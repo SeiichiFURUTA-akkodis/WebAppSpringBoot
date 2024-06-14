@@ -12,11 +12,11 @@
 			<a href="#" class="btn btn-light"><i class="fas fa-users"></i> みんなの注文履歴</a>
 		</div>
 		<div class="col-md-2 text-center">
-			<a th:href="@{/cart?action=view}" class="btn btn-warning">
-				<i class="fa fa-shopping-cart" aria-hidden="true"></i> カートをみる(<%= cart.size() %>)
+			<a th:href="@{/cart?action=view&itemId=0&amount=0}" class="btn btn-warning">
+				<i class="fa fa-shopping-cart" aria-hidden="true"></i> 
+				カートをみる(<span th:text="${cart==null ? '' : cart.size()}"></span>)
 			</a>
-			<p class="text-warning">カート内合計: <%= Util.getYenFormat(cart.calcTotalSum()) %>
-			</p>
+			<p class="text-warning">カート内合計: <span th:text="${cart==null ? '' : cart.calcTotalSum()}"></span></p>
 		</div>
 	</div>
 </div>
@@ -52,5 +52,59 @@
 		</form>
 	</div>
 </div>
+
+<ul th:fragment="item" class="list-group list-group-flush shadow-sm">
+	<th:block th:each="item : ${cart.getCartItemList()}">
+		<li class="list-group-item p-4">
+			<div class="row">
+				<div class="col-2"><img th:src="@{/img/default.png}" alt="ItemImage" class="img-fluid"></div>
+				<div class="col-10">
+					<h5 th:text="${item.item.itemName}"></h5>
+					<div class="row">
+						<div class="col-6"></div>
+						<div class="col-6">
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>価格</td>
+										<td><p class="text-right" th:text="${item.item.price}+'(税抜)'"></p></td>
+									</tr>
+									<tr>
+										<td>数量</td>
+										<td>
+											<form th:action="@{/cart}">
+												<input type="hidden" name="itemId" th:value="${item.item.itemId}" />
+												<div class="input-group input-group-md">
+													<input type="text" class="form-control" placeholder="数量"
+														aria-label="数量" aria-describedby="text1a" name="amount"
+														th:value="${item.amount}" required />
+													<button type="submit" class="btn btn-default" name="action"
+														value="setAmount">
+														<i class="fas fa-redo-alt"></i>
+													</button>
+												</div>
+											</form>
+										</td>
+									</tr>
+									<tr>
+										<td>小計</td>
+										<td><p class="text-right" th:text="${item.calcTotalPrice()}"></p></td>
+									</tr>
+								</tbody>
+							</table>
+							<form th:action="@{/cart}">
+								<input type="hidden" name="itemId" th:value="${item.item.itemId}" />
+								<input type="hidden" name="amount" th:value="${item.amount}" />
+								<button type="submit" class="btn btn-danger w-100" name="action" value="removeItem">
+									<i class="fas fa-trash-alt"></i> カートから削除
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+	</th:block>
+</ul>
 
 </html>

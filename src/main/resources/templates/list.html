@@ -24,7 +24,7 @@
                   <div class="card-header text-center" style="height: 200px;">
                     <img th:src="@{/img/default.png}" class="img-fluid mh-100" />
                   </div>
-                  <div class="card-body"><h5 class="card-title" th:text="${itemList[__${count}__].itemname}"></h5></div>
+                  <div class="card-body"><h5 class="card-title" th:text="${itemList[__${count}__].itemName}"></h5></div>
                   <div class="card-footer">
                     <p class="card-text text-danger" th:text="${itemList[__${count}__].price}"></p>
                     <form method="get" th:action="@{/detail}">
@@ -55,5 +55,6 @@
         <div class="col-md-1"></div>
 	  </div>
 	</div>
-  </body>
+</body>
+
 </html>

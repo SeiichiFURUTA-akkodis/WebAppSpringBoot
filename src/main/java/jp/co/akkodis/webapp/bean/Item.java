@@ -20,7 +20,7 @@ public class Item implements Serializable {
     private Integer itemId = 0;       // 商品ID
     
     @Column(value="itemname")
-    private String itemname;      // 商品名
+    private String itemName;      // 商品名
     /*
     private String categoryCode; // 分類コード
     */
