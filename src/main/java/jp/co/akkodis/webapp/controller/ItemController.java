@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.akkodis.webapp.bean.Item;
 import jp.co.akkodis.webapp.service.ItemService;
 
 @Controller
-public class ItemListController {
+public class ItemController {
 	
 	@Autowired
 	ItemService service;
@@ -24,6 +25,13 @@ public class ItemListController {
 		}
 		model.addAttribute("itemList", list);
 		return "list";
+	}
+	
+	@GetMapping(value = "/detail")
+	public String detail(@RequestParam("itemId") Integer id, Model model) {
+		Item item = service.getItemById(id);
+		model.addAttribute("item", item);
+		return "detail";
 	}
 
 }

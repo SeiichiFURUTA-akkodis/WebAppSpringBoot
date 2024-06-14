@@ -18,4 +18,7 @@ public class ItemService {
 		return (ArrayList<Item>) repository.findAll();
 	}
 
+	public Item getItemById(Integer id) {
+		return repository.findById(id).get();
+	}
 }

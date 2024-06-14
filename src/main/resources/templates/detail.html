@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <th:block th:replace="~{header :: head}"></th:block>
+  <body style="height: 100%; background-color: #EEE">
+    <th:block th:replace="~{body :: header}"></th:block>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <div class="card shadow-sm">
+            <div class="card-header">
+            <h1 th:text="${item.itemname}"></h1>
+            </div>
+            <div class="card-body">
+            <div class="row">
+              <div class="col-4">
+                <img th:src="@{/img/default.png}" alt="ItemImage" class="img-fluid">
+              </div>
+              <div class="col-8">
+              <p th:text="${item.explanation}"></p>
+              <p th:text="${item.price}+'(税抜)'"><!--<%= Util.getYenFormat(item.getPrice()) %>-->(税抜)</p>
+		      <form method="get" th:action="@{/cart}">
+		        <p><input type="text" class="form-control" placeholder="数量" aria-label="数量" aria-describedby="text1a" name="amount" value="1"></p>
+		        <input type="hidden" name="itemId" th:value="${item.itemId}">
+	      	    <p><button type="submit" class="btn btn-warning" name="action" value="add">
+	      	      <i class="fa fa-cart-plus" aria-hidden="true"></i> カートに追加</button>
+	      	    </p>
+	      	  </form>
+	      	  </div>
+	      	</div>
+	      	</div>
+          </div>
+          </div>
+        <div class="col-md-2"></div>
+	  </div>
+	</div>
+  </body>
+</html>

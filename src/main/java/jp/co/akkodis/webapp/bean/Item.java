@@ -29,9 +29,13 @@ public class Item implements Serializable {
     
     @Column(value="price")
     private Integer price;        // 値段
-    /*
+    
+    @Column(value="explanation")
     private String explanation;   // 商品説明
+    
+    @Column(value="imagename")
     private String imageName;     // 画像ファイル名
+    
+    @Column(value="originalid")
     private String originalId;    // 商品固有のID
-	*/
 }
