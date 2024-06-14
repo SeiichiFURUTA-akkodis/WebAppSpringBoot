@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="header" class="container-fluid mb-2 pt-3" style="background-color: #272A59">
+	<div class="row">
+		<div class="col-md-5">
+			<a th:href="@{/itemlist}">
+				<img th:src="@{/img/logo_white.png}" alt="Logo" class="img-fluid">
+			</a>
+		</div>
+		<div class="col-md-3"></div>
+		<div class="col-md-2">
+			<a href="#" class="btn btn-light"><i class="fas fa-users"></i> みんなの注文履歴</a>
+		</div>
+		<div class="col-md-2 text-center">
+			<a th:href="@{/cart?action=view}" class="btn btn-warning">
+				<i class="fa fa-shopping-cart" aria-hidden="true"></i> カートをみる(<%= cart.size() %>)
+			</a>
+			<p class="text-warning">カート内合計: <%= Util.getYenFormat(cart.calcTotalSum()) %>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div th:fragment="search" class="card shadow-sm" style="width: 18rem;">
+	<div class="card-body">
+		<h5 class="card-title">検索</h5>
+		<form method="get" th:action="@{/}">
+			<p>
+				<input type="text" class="form-control" placeholder="検索文字列" aria-label="検索文字列­"
+					aria-describedby="text1a" name="search">
+			</p>
+			<p class="card-text">カテゴリ</p>
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="1001" name="category" id="flexCheckDefault"
+					checked>
+				<label class="form-check-label" for="flexCheckDefault">ビール</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="1002" name="category" id="flexCheckChecked"
+					checked>
+				<label class="form-check-label" for="flexCheckChecked">日本酒</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="1003" name="category" id="flexCheckChecked"
+					checked>
+				<label class="form-check-label" for="flexCheckChecked">泡盛</label>
+			</div>
+			<p>
+				<button type="submit" class="btn btn-success w-100" name="action" value="search">
+					<i class="fas fa-search"></i> 検索</button>
+			</p>
+		</form>
+	</div>
+</div>
+
+</html>
