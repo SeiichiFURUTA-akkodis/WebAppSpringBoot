@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{header :: head}"></th:block>
+
+<body style="height: 100%; background-color: #EEE">
+	<th:block th:replace="~{body :: header}"></th:block>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<div class="card shadow-sm">
+					<div class="card-header">
+						<h5 class="card-title text-center">以下の内容で注文します。よろしければ注文を確定してください。</h5>
+					</div>
+					<div class="card-body">
+						<div class="card shadow-sm mb-2">
+							<div class="card-body"><th:block th:replace="~{body :: item}"></th:block></div>
+						</div>
+						<div class="card shadow-sm mb-2">
+							<div class="card-body text-right">
+								<h5 class="card-title text-right" th:text="${'小計(税抜)：' + #numbers.formatInteger(cart.calcTotalSum(),3,'COMMA')}"></h5>
+								<p class="card-text text-right" th:text="${'消費税：' + #numbers.formatInteger(cart.calcTotalSum() * 0.1,3,'COMMA')}"></p>
+								<hr />
+								<h4 class="card-title text-right" th:text="${'合計(税込)：' + #numbers.formatInteger(cart.calcTotalSum() * 1.1,3,'COMMA')}"></h4>
+							</div>
+						</div>
+						<div class="card shadow-sm">
+							<div class="card-body">
+								<form method="post" action="@{/complete}">
+									<p class="card-text">氏名を入力してください。</p>
+									<p><input type="text" class="form-control" placeholder="氏名" aria-label="氏名"
+											aria-describedby="text1a" name="customerName" required /></p>
+									<p><button type="submit" class="btn btn-success w-100" name="action" value="confirm">
+											<i class="fas fa-check-circle"></i> 注文を確定する</button></p>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+</body>
+
+</html>

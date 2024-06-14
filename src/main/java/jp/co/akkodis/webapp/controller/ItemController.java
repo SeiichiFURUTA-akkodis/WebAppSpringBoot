@@ -66,4 +66,8 @@ public class ItemController {
 		return "cart";
 	}
 
+	@GetMapping(value = "/register")
+	public String register() {
+		return "register";
+	}
 }

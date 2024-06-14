@@ -16,7 +16,7 @@
 				<i class="fa fa-shopping-cart" aria-hidden="true"></i> 
 				カートをみる(<span th:text="${cart==null ? '' : cart.size()}"></span>)
 			</a>
-			<p class="text-warning">カート内合計: <span th:text="${cart==null ? '' : cart.calcTotalSum()}"></span></p>
+			<p class="text-warning">カート内合計: <span th:text="${cart==null ? '' : #numbers.formatInteger(cart.calcTotalSum(),3,'COMMA')}"></span></p>
 		</div>
 	</div>
 </div>
@@ -67,7 +67,7 @@
 								<tbody>
 									<tr>
 										<td>価格</td>
-										<td><p class="text-right" th:text="${item.item.price}+'(税抜)'"></p></td>
+										<td><p class="text-right" th:text="${#numbers.formatInteger(item.item.price,3,'COMMA')}+'(税抜)'"></p></td>
 									</tr>
 									<tr>
 										<td>数量</td>
@@ -88,7 +88,7 @@
 									</tr>
 									<tr>
 										<td>小計</td>
-										<td><p class="text-right" th:text="${item.calcTotalPrice()}"></p></td>
+										<td><p class="text-right" th:text="${#numbers.formatInteger(item.calcTotalPrice(),3,'COMMA')}"></p></td>
 									</tr>
 								</tbody>
 							</table>
