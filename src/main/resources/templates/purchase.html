@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{header :: head}"></th:block>
+
+<body style="height: 100%; background-color: #EEE">
+	<th:block th:replace="~{body :: header}"></th:block>
+	<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <div class="card shadow-sm text-center">
+              <div class="card-body">
+                <h2>ご利用ありがとうございました</h2>
+                <img th:src="@{/img/thankyou.jpg}" alt="ThxImage" class="img-fluid">
+	          </div>
+            </div>
+                <form method="get" th:action="@{/itemlist}" class="mt-2">
+   	      	      <p><button type="submit" class="btn btn-success w-100" name="itemId" value="">トップに戻る</button></p>
+	            </form>
+          </div>
+        <div class="col-md-2"></div>
+	  </div>
+	</div>
+  </body>
+</html>

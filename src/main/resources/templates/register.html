@@ -26,7 +26,7 @@
 						</div>
 						<div class="card shadow-sm">
 							<div class="card-body">
-								<form method="post" action="@{/complete}">
+								<form method="post" th:action="@{/complete}">
 									<p class="card-text">氏名を入力してください。</p>
 									<p><input type="text" class="form-control" placeholder="氏名" aria-label="氏名"
 											aria-describedby="text1a" name="customerName" required /></p>

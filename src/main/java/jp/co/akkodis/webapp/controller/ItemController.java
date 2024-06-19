@@ -70,4 +70,4 @@ public class ItemController {
 	public String register() {
 		return "register";
 	}
-}
+	}
